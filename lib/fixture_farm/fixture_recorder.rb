@@ -266,6 +266,8 @@ module FixtureFarm
         value.to_f
       when Hash
         value.to_json
+      when IPAddr
+        value.to_s
       else
         value
       end

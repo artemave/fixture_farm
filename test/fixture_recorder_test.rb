@@ -207,6 +207,10 @@ class FixtureRecorderTest < ActiveSupport::TestCase
     result = recorder.send(:serialize_attributes, duration)
     assert_equal 'PT1H', result
 
+    ip_address = IPAddr.new('127.0.0.1')
+    result = recorder.send(:serialize_attributes, ip_address)
+    assert_equal '127.0.0.1', result
+
     # Test regular value
     string = 'test'
     result = recorder.send(:serialize_attributes, string)
