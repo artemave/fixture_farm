@@ -42,7 +42,7 @@ class TestHelperTest < ActiveSupport::TestCase
     fixtures = YAML.load_file(Rails.root.join('test', 'fixtures', 'users.yml'))
     assert_not_includes fixtures.keys, 'new_user'
 
-    record_fixtures(new_user: :user_1) do
+    record_fixtures(user_1: :new_user) do
       User.create!(name: 'Client User', email: 'client@example.com')
     end
 

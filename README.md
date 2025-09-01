@@ -108,9 +108,9 @@ FixtureFarm.low_priority_parent_model_for_naming = -> { _1.is_a?(TenantModel) }
 `record_fixtures` also supports hash arguments for advanced fixture naming control:
 
 ```ruby
-# Replace 'client_1' with 'new_client' in fixture names, or use 'new_client' as prefix if not found
 record_fixtures(new_client: :client_1) do
-  User.create!(name: 'Test User', email: 'test@example.com')
+  User.create!(name: 'Test User', email: 'test@example.com', client: clients(:client_1))
+  Star.create!
 end
 ```
 
@@ -118,9 +118,9 @@ This works in two ways:
 - **Replacement**: If a generated fixture name contains `client_1`, it gets replaced with `new_client`
 - **Prefixing**: If a generated fixture name doesn't contain `client_1`, it gets prefixed with `new_client_`
 
-For example:
-- A user fixture that would be named `client_1_user_1` becomes `new_client_user_1` (replacement)
-- A user fixture that would be named `user_1` becomes `new_client_user_1` (prefixing)
+In the above example:
+- The user fixture would be named `client_1_user_1`, but the actual name will be `new_client_user_1` (replacement)
+- The star fixture would be named `star_1`, but will be named `new_client_star_1` (prefixing)
 
 ### Attachment fixtures
 

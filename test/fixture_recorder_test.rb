@@ -439,7 +439,7 @@ class FixtureRecorderTest < ActiveSupport::TestCase
   end
 
   test 'hash name replacement replaces fixture names' do
-    recorder = FixtureFarm::FixtureRecorder.new(new_user: :user_1)
+    recorder = FixtureFarm::FixtureRecorder.new(user_1: :new_user)
     recorder.record_fixtures do
       User.create!(name: 'Test User', email: 'test@example.com')
     end
@@ -452,7 +452,7 @@ class FixtureRecorderTest < ActiveSupport::TestCase
   end
 
   test 'hash name replacement prefixes when old name not found' do
-    recorder = FixtureFarm::FixtureRecorder.new(new_client: :client_1)
+    recorder = FixtureFarm::FixtureRecorder.new(client_1: :new_client)
     recorder.record_fixtures do
       User.create!(name: 'Test User', email: 'test@example.com')
     end

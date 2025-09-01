@@ -4,7 +4,7 @@
 require_relative '../lib/fixture_farm/fixture_recorder'
 
 def usage
-  puts 'Usage: bundle exec fixture_farm <record|status|stop> [name_prefix|name_prefix:replaces_name]'
+  puts 'Usage: bundle exec fixture_farm <record|status|stop> [name_prefix|old_name:new_name]'
   exit 1
 end
 
@@ -12,7 +12,7 @@ case ARGV[0]
 when 'record'
   prefix_arg = ARGV[1]
 
-  # Parse hash syntax like "new_user:user_1" into {new_user: :user_1}
+  # Parse hash syntax like "user_1:new_user" into {user_1: :new_user}
   if prefix_arg&.include?(':')
     parts = prefix_arg.split(':', 2)
     parsed_prefix = { parts[0].to_sym => parts[1].to_sym }

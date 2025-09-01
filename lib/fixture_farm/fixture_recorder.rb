@@ -382,7 +382,7 @@ module FixtureFarm
           "#{model_instance.class.name.underscore.split('/').last}_1"
         ].select(&:present?).join('_')
 
-        @fixture_name_replacements.each do |new_name, old_name|
+        @fixture_name_replacements.each do |old_name, new_name|
           # Only apply replacement if the base_name doesn't already start with new_name
           # This prevents double-application of replacements
           next if base_name.start_with?("#{new_name}_")

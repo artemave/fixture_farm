@@ -73,7 +73,7 @@ class CLITest < ActiveSupport::TestCase
   test 'CLI usage function shows correct format' do
     # Test the usage function by providing invalid command
     result = run_cli(['help'])
-    assert_match(/Usage: bundle exec fixture_farm <record\|status\|stop> \[name_prefix\|name_prefix:replaces_name\]/, result[:output])
+    assert_match(/Usage: bundle exec fixture_farm <record\|status\|stop> \[name_prefix\|old_name:new_name\]/, result[:output])
     assert_equal 1, result[:exit_code]
   end
 
@@ -91,7 +91,7 @@ class CLITest < ActiveSupport::TestCase
   end
 
   test 'CLI record command handles hash syntax for name replacement' do
-    run_cli(%w[record new_user:user_1])
+    run_cli(%w[record user_1:new_user])
 
     # Create a user through the recording session
     recorder = FixtureFarm::FixtureRecorder.resume_recording_session
